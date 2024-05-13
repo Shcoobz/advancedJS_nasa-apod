@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Navigation({ page, setPage, loadMoreImages }) {
   return (
     <div className='navigation-container'>
@@ -24,5 +26,11 @@ function Navigation({ page, setPage, loadMoreImages }) {
     </div>
   );
 }
+
+Navigation.propTypes = {
+  page: PropTypes.oneOf(['results', 'favorites']).isRequired,
+  setPage: PropTypes.func.isRequired,
+  loadMoreImages: PropTypes.func.isRequired,
+};
 
 export default Navigation;

@@ -19,9 +19,14 @@ function App() {
 
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
+
     if (savedFavorites) {
       setFavorites(savedFavorites);
     }
+  }, []);
+
+  useEffect(() => {
+    fetchImages();
   }, []);
 
   async function fetchImages() {
@@ -38,13 +43,10 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    fetchImages();
-  }, []);
-
   function loadMoreImages() {
     fetchImages();
     setPage('results');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   return (

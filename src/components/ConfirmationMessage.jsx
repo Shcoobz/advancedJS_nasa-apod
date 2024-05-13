@@ -1,17 +1,30 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 function ConfirmationMessage({ message }) {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      clearTimeout(timeout);
-    }, 2000);
-  }, []);
+    if (message) {
+      setIsVisible(true);
+
+      const timeoutId = setTimeout(() => {
+        setIsVisible(false);
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [message]);
 
   return (
-    <div className='confirmation-message'>
-      <h1>{message}</h1>
+    <div className={`confirmation-message ${isVisible ? 'visible' : 'hidden'}`}>
+      <h1 id='confirmationText'>{message}</h1>
     </div>
   );
 }
+
+ConfirmationMessage.propTypes = {
+  message: PropTypes.string.isRequired,
+};
 
 export default ConfirmationMessage;
