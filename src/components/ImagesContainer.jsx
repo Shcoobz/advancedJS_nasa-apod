@@ -1,26 +1,31 @@
 import ImageCard from './ImageCard';
 
-function ImagesContainer({ results, favorites, setFavorites }) {
-  function toggleFavorite(url, favorites, results, setFavorites) {
+function ImagesContainer({ results, favorites, setFavorites, page }) {
+  function toggleFavorite(url) {
     const updatedFavorites = { ...favorites };
     if (updatedFavorites[url]) {
       delete updatedFavorites[url];
     } else {
-      updatedFavorites[url] = results.find((result) => result.url === url);
+      const itemToAdd = results.find((result) => result.url === url);
+      if (itemToAdd) {
+        updatedFavorites[url] = itemToAdd;
+      }
     }
     setFavorites(updatedFavorites);
 
-    // TODO: save to local storage
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   }
 
   return (
     <div className='images-container'>
-      {results.map((result) => (
+      {(page === 'results' ? results : Object.values(favorites)).map((result) => (
         <ImageCard
           key={result.url}
           result={result}
           isFavorite={!!favorites[result.url]}
-          toggleFavorite={() => toggleFavorite(result.url)}
+          toggleFavorite={() =>
+            toggleFavorite(result.url, favorites, results, setFavorites)
+          }
         />
       ))}
     </div>

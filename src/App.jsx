@@ -6,7 +6,9 @@ import Loader from './components/Loader';
 const NASA_API = {
   count: 10,
   apiKey: 'DEMO_KEY',
-  apiUrl: `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=10`,
+  get apiUrl() {
+    return `https://api.nasa.gov/planetary/apod?api_key=${this.apiKey}&count=${this.count}`;
+  },
 };
 
 function App() {
@@ -16,31 +18,44 @@ function App() {
   const [page, setPage] = useState('results');
 
   useEffect(() => {
-    async function fetchImages() {
-      setLoading(true);
-      try {
-        const response = await fetch(NASA_API.apiUrl);
-        const data = await response.json();
-        setResults(data);
-        console.log(data);
-      } catch (error) {
-        console.error('Failed to fetch images:', error);
-      } finally {
-        setLoading(false);
-      }
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
+    if (savedFavorites) {
+      setFavorites(savedFavorites);
     }
+  }, []);
 
+  async function fetchImages() {
+    setLoading(true);
+
+    try {
+      const response = await fetch(NASA_API.apiUrl);
+      const data = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error('Failed to fetch images:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
     fetchImages();
   }, []);
+
+  function loadMoreImages() {
+    fetchImages();
+    setPage('results');
+  }
 
   return (
     <div className='container'>
       {loading && <Loader />}
-      <Navigation page={page} setPage={setPage} />
+      <Navigation page={page} setPage={setPage} loadMoreImages={loadMoreImages} />
       <ImagesContainer
         results={results}
         favorites={favorites}
         setFavorites={setFavorites}
+        page={page}
       />
     </div>
   );

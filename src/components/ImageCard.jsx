@@ -24,7 +24,7 @@ function ImageCard({ result, isFavorite, toggleFavorite }) {
       <div className='card-body'>
         <div className='title-icon-container'>
           <h5 className='card-title'>{result.title}</h5>
-          <span onClick={toggleFavorite} className='clickable'>
+          <span onClick={() => toggleFavorite(result.url)} className='clickable'>
             <FontAwesomeIcon icon={isFavorite ? fasHeart : farHeart} />
           </span>
         </div>
