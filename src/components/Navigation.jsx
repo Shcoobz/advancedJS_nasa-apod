@@ -1,5 +1,13 @@
 import PropTypes from 'prop-types';
 
+/**
+ * Renders the navigation bar for the application, allowing users to switch between results and favorites views or trigger more content to load.
+ * @param {Object} props - The properties passed to the component.
+ * @param {string} props.page - The current page state, either 'results' or 'favorites'.
+ * @param {Function} props.setPage - Function to set the current page state.
+ * @param {Function} props.loadMoreImages - Function to load more images from the external source.
+ * @returns {JSX.Element} - A navigation component with interactive elements to control application views and actions.
+ */
 function Navigation({ page, setPage, loadMoreImages }) {
   return (
     <div className='navigation-container'>
