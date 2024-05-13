@@ -4,11 +4,11 @@ function ConfirmationMessage() {
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
 
-  const showMessage = (msg) => {
+  function showMessage(msg, setMessage, setVisible) {
     setMessage(msg);
     setVisible(true);
     setTimeout(() => setVisible(false), 2000);
-  };
+  }
 
   return visible ? (
     <div className='confirmation-message'>

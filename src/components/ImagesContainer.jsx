@@ -1,10 +1,27 @@
-function ImagesContainer({ page, results, favorites, setFavorites }) {
-  const currentArray = page === 'results' ? results : Object.values(favorites);
+import ImageCard from './ImageCard';
+
+function ImagesContainer({ results, favorites, setFavorites }) {
+  function toggleFavorite(url, favorites, results, setFavorites) {
+    const updatedFavorites = { ...favorites };
+    if (updatedFavorites[url]) {
+      delete updatedFavorites[url];
+    } else {
+      updatedFavorites[url] = results.find((result) => result.url === url);
+    }
+    setFavorites(updatedFavorites);
+
+    // TODO: save to local storage
+  }
 
   return (
     <div className='images-container'>
-      {currentArray.map((result) => (
-        <div key={result.url} className='card'></div>
+      {results.map((result) => (
+        <ImageCard
+          key={result.url}
+          result={result}
+          isFavorite={!!favorites[result.url]}
+          toggleFavorite={() => toggleFavorite(result.url)}
+        />
       ))}
     </div>
   );

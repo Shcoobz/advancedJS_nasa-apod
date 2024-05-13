@@ -2,45 +2,46 @@ import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import ImagesContainer from './components/ImagesContainer';
 import Loader from './components/Loader';
-import ConfirmationMessage from './components/ConfirmationMessage';
-import { NASA_API } from './api';
+
+const NASA_API = {
+  count: 10,
+  apiKey: 'DEMO_KEY',
+  apiUrl: `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=10`,
+};
 
 function App() {
-  const [page, setPage] = useState('results');
   const [results, setResults] = useState([]);
   const [favorites, setFavorites] = useState({});
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState('results');
 
   useEffect(() => {
-    getNasaPictures();
+    async function fetchImages() {
+      setLoading(true);
+      try {
+        const response = await fetch(NASA_API.apiUrl);
+        const data = await response.json();
+        setResults(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Failed to fetch images:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchImages();
   }, []);
 
-  const getNasaPictures = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(NASA_API.apiUrl);
-      const data = await response.json();
-      setResults(data);
-      setLoading(false);
-
-      console.log(data); // This will show what the API returned
-    } catch (error) {
-      console.error('Failed to fetch NASA pictures:', error);
-      setLoading(false);
-    }
-  };
-
   return (
-    <div>
+    <div className='container'>
       {loading && <Loader />}
       <Navigation page={page} setPage={setPage} />
       <ImagesContainer
-        page={page}
         results={results}
         favorites={favorites}
         setFavorites={setFavorites}
       />
-      <ConfirmationMessage />
     </div>
   );
 }
