@@ -26,6 +26,7 @@ function ConfirmationMessage({ message, className }) {
 
 ConfirmationMessage.propTypes = {
   message: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default ConfirmationMessage;
