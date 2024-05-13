@@ -1,14 +1,17 @@
 import ImageCard from './ImageCard';
+import ConfirmationMessage from './ConfirmationMessage';
 
 function ImagesContainer({ results, favorites, setFavorites, page }) {
   function toggleFavorite(url) {
     const updatedFavorites = { ...favorites };
     if (updatedFavorites[url]) {
       delete updatedFavorites[url];
+      ConfirmationMessage('Removed from favorites!');
     } else {
       const itemToAdd = results.find((result) => result.url === url);
       if (itemToAdd) {
         updatedFavorites[url] = itemToAdd;
+        ConfirmationMessage('Added to favorites!');
       }
     }
     setFavorites(updatedFavorites);

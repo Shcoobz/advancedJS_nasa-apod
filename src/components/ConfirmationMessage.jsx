@@ -1,20 +1,17 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-function ConfirmationMessage() {
-  const [visible, setVisible] = useState(false);
-  const [message, setMessage] = useState('');
+function ConfirmationMessage({ message }) {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout);
+    }, 2000);
+  }, []);
 
-  function showMessage(msg, setMessage, setVisible) {
-    setMessage(msg);
-    setVisible(true);
-    setTimeout(() => setVisible(false), 2000);
-  }
-
-  return visible ? (
+  return (
     <div className='confirmation-message'>
       <h1>{message}</h1>
     </div>
-  ) : null;
+  );
 }
 
 export default ConfirmationMessage;
