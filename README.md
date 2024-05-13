@@ -1,6 +1,6 @@
 # react_NASA APOD: [LIVE DEMO](https://shcoobz.github.io/react_nasa-apod/)
 
-![react_nasa-apod](img/react_nasa-apod.png)
+![react_nasa-apod](public/img/react_nasa-apod.png)
 
 ## Summary
 
