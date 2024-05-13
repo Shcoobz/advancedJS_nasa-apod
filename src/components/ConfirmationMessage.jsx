@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-function ConfirmationMessage({ message }) {
+function ConfirmationMessage({ message, className }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,8 @@ function ConfirmationMessage({ message }) {
   }, [message]);
 
   return (
-    <div className={`confirmation-message ${isVisible ? 'visible' : 'hidden'}`}>
+    <div
+      className={`confirmation-message ${isVisible ? 'visible' : 'hidden'} ${className}`}>
       <h1 id='confirmationText'>{message}</h1>
     </div>
   );

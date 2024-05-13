@@ -2,6 +2,8 @@
   --primary-main-color: rgba(60, 179, 113, 1);
   --secondary-main-color: rgb(44, 134, 84);
   --background-color: whitesmoke;
+  --error-color: rgb(235, 28, 28);
+  --success-color: rgb(11, 224, 11);
 }
 
 html {
@@ -149,6 +151,14 @@ body {
   position: fixed;
   bottom: 25px;
   right: 50px;
+}
+
+.error {
+  background: var(--error-color);
+}
+
+.success {
+  background: var(--success-color);
 }
 
 /* Hidden */
