@@ -1,10 +1,10 @@
-# react_NASA APOD: [LIVE DEMO](https://shcoobz.github.io/react_nasa-apod/)
+# advancedJS_NASA APOD: [LIVE DEMO](https://shcoobz.github.io/advancedJS_nasa-apod/)
 
-![react_nasa-apod](public/img/react_nasa-apod.png)
+![advancedJS_nasa-apod](public/img/advancedJS_nasa-apod.png)
 
 ## Summary
 
-react_Nasa Apod provides an engaging web application that utilizes the NASA Astronomy Picture of the Day (APOD) API. It features a user-friendly interface that allows users to view breathtaking images and videos from space, manage their favorite astronomical phenomena, and explore details about each media piece.
+advancedJS_Nasa Apod provides an engaging web application that utilizes the NASA Astronomy Picture of the Day (APOD) API. It features a user-friendly interface that allows users to view breathtaking images and videos from space, manage their favorite astronomical phenomena, and explore details about each media piece.
 
 The core functionality includes:
 
@@ -40,6 +40,6 @@ The application is fully responsive, providing a seamless experience across all 
 
 ---
 
-_Note: This document provides an overview of react_NASA APOD. For detailed instructions and more information, please refer to the source code documentation._
+_Note: This document provides an overview of advancedJS_NASA APOD. For detailed instructions and more information, please refer to the source code documentation._
 
 _This project is a conversion from an earlier version built with vanilla JavaScript and HTML, available [here](https://github.com/Shcoobz/basicJS_nasa-apod/). This conversion integrates React to enhance UI reactivity and maintainability._

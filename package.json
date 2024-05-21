@@ -1,5 +1,5 @@
 {
-  "name": "react_nasa-apod",
+  "name": "advancedJS_nasa-apod",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://shcoobz.github.io/react_nasa-apod/",
+  "homepage": "https://shcoobz.github.io/advancedJS_nasa-apod/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
